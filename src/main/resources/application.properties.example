@@ -1,0 +1,59 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Copy this file to application.properties (which is git-ignored) and adjust.
+# Every ${NAME:default} can also be set with an environment variable NAME.
+# ─────────────────────────────────────────────────────────────────────────────
+spring.application.name=atelier-api
+server.port=${PORT:8089}
+
+# Database (PostgreSQL 14+)
+spring.datasource.url=${DB_URL:jdbc:postgresql://localhost:5432/atelier}
+spring.datasource.username=${DB_USERNAME:atelier}
+spring.datasource.password=${DB_PASSWORD:atelier}
+spring.jpa.hibernate.ddl-auto=validate
+spring.jpa.open-in-view=false
+
+# Tokens. JWT_SECRET must be at least 32 characters: openssl rand -base64 48
+app.jwt.secret=${JWT_SECRET:}
+app.jwt.expiration=${JWT_EXPIRATION:8h}
+
+# Comma-separated list of web origins allowed to call the API.
+app.cors.allowed-origins=${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+
+# First super admin, created on first start only.
+app.bootstrap.admin-name=${ADMIN_NAME:Administrator}
+app.bootstrap.admin-email=${ADMIN_EMAIL:admin@example.com}
+app.bootstrap.admin-password=${ADMIN_PASSWORD:ChangeMe123!}
+# Adds four sample users on start (password Password123!). Leave off in production.
+app.bootstrap.demo-users=${DEMO_USERS:false}
+
+# Product name used in emails and authenticator apps, and where the web app runs
+# (used to build links in emails, e.g. https://admin.example.com/reset-password?token=...).
+app.brand-name=${BRAND_NAME:Anjana}
+app.web-url=${WEB_URL:http://localhost:5173}
+
+# Self sign-up. New accounts get DEFAULT_ROLE and must confirm their email before signing in.
+app.registration.enabled=${REGISTRATION_ENABLED:true}
+app.registration.require-verification=${REGISTRATION_REQUIRE_VERIFICATION:true}
+app.registration.default-role=${REGISTRATION_DEFAULT_ROLE:USER}
+
+# Email (verify email, password reset, security alerts). Leave MAIL_HOST empty during
+# development: emails are then written to the log, links included.
+app.mail.from=${MAIL_FROM:no-reply@example.com}
+spring.mail.host=${MAIL_HOST:}
+spring.mail.port=${MAIL_PORT:587}
+spring.mail.username=${MAIL_USERNAME:}
+spring.mail.password=${MAIL_PASSWORD:}
+spring.mail.properties.mail.smtp.auth=${MAIL_SMTP_AUTH:true}
+spring.mail.properties.mail.smtp.starttls.enable=${MAIL_STARTTLS:true}
+
+# Sign-in throttling
+app.security.max-login-attempts=${MAX_LOGIN_ATTEMPTS:5}
+app.security.login-lockout=${LOGIN_LOCKOUT:15m}
+
+# Audit log
+audit.retention-months=${AUDIT_RETENTION_MONTHS:3}
+audit.data-changes.enabled=${AUDIT_DATA_CHANGES:true}
+
+# Error responses never include stack traces
+server.error.include-stacktrace=never
+server.error.include-message=never
