@@ -1,0 +1,19 @@
+package com.atelier.api.enums;
+
+public enum AuditAction {
+    CREATE,
+    UPDATE,
+    DELETE,
+    LOGIN,
+    LOGIN_FAILED,
+    LOGOUT,
+    PASSWORD_CHANGED,
+    REGISTER,
+    EMAIL_VERIFIED,
+    PASSWORD_RESET_REQUESTED,
+    PASSWORD_RESET,
+    TWO_FACTOR_ENABLED,
+    TWO_FACTOR_DISABLED,
+    SESSION_REVOKED,
+    OTHER
+}
